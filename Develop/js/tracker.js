@@ -184,3 +184,76 @@ function addDepartment() {
             addRestart();
         })
 };
+
+//viewing employee, role and department function 
+
+function viewEmployee() {
+    connection.query(
+        "SELECT * FROM role",
+        function (err, results) {
+            if (err) throw err;
+            console.table(results);
+        });
+    viewRestart();
+};
+
+function viewRole() {
+    connection.query(
+        "SELECT * FROM role",
+        function (err, results) {
+            if (err) throw err;
+            console.table(results);
+        });
+    viewRestart();
+};
+
+function viewDepartment() {
+    connection.query(
+        "SELECT * FROM role",
+        function (err, results) {
+            if (err) throw err;
+            console.table(results);
+        });
+    viewRestart();
+};
+
+function addRestart() {
+    inquierer
+        .prompt([
+            {
+                type: "list",
+                message: "Would you like to add more information or return to the main menu?",
+                choices: ["Keep adding info", "Return to Main Menu"],
+                name: "addRestartOption"
+            }
+        ]).then(answer => {
+            if (answer.addRestartOption === "Keep adding info") {
+                addOption();
+            } else {
+                startApp()
+            };
+        });
+};
+
+function viewRestart() {
+    inquierer
+        .prompt([
+            {
+                type: "list",
+                message: "Would you like to view more information or return to the main menu?",
+                choices: ["Keep viewing info", "Return to Main Menu"],
+                name: "viewRestartOption"
+            }
+        ]).then(answer => {
+            if (answer.viewRestartOption === "Keep viewing info") {
+                viewOption();
+            } else {
+                startApp()
+            };
+        });
+};
+
+function endApp() {
+    console.log("Thanks for using The Employee Tracking System!");
+    connection.end();
+};
