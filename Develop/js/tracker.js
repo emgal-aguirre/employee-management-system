@@ -68,3 +68,119 @@ function viewOption() {
             }
         })
 };
+
+// adding role, employee or department
+
+function addEmployee() {
+    inquierer
+        .prompt([
+            {
+                type: "input",
+                message: "What is the new employees first name?",
+                name: "firstName"
+            },
+            {
+                type: "input",
+                message: "What is the new employees last name?",
+                name: "lastName"
+            },
+            {
+                type: "input",
+                message: "What is the the employees ID number",
+                name: "employeeId"
+            },
+            {
+                type: "input",
+                message: "What is their role?",
+                name: "employeeRole"
+            }
+        ]).then(answer => {
+            const { firstName, lastName, employeeId, employeeRole } = answer;
+
+            connection.query(
+                "INSERT INTO Employee SET?", {
+                first_name: answer.firstName,
+                last_name: answer.lastName,
+                id: answer.employeeId,
+                role_id: answer.employeeRole
+            }, function (err, results) {
+                if (err) throw err;
+                console.table(results);
+                console.log("The new employee has been succesfully added!")
+            }
+            )
+            addRestart();
+        })
+};
+
+function addRole() {
+    inquierer
+        .prompt([
+            {
+                type: "input",
+                message: "What is the role being added?",
+                name: "roleName"
+            },
+            {
+                type: "input",
+                message: "What is the id for the new role?",
+                name: "roleId"
+            },
+            {
+                type: "input",
+                message: "What is the salary for this role?",
+                name: "roleSalary"
+            },
+            {
+                type: "input",
+                message: "What department does this role belong to?",
+                name: "roleDepartment"
+            }
+        ]).then(answer => {
+            const { roleName, roleId, roleSalary, roleDepartment } = answer;
+
+            connection.query(
+                "INSERT INTO Role SET?", {
+                title: answer.roleName,
+                id: answer.roleId,
+                salary: answer.roleSalary,
+                department_id: answer.roleDepartment
+            }, function (err, results) {
+                if (err) throw err;
+                console.table(results);
+                console.log("The new role has been succesfully added!")
+            }
+            )
+            addRestart();
+        })
+};
+
+function addDepartment() {
+    inquierer
+        .prompt([
+            {
+                type: "input",
+                message: "What is the department being added?",
+                name: "departmentName"
+            },
+            {
+                type: "input",
+                message: "What is the id for the new department?",
+                name: "departmentId"
+            }
+        ]).then(answer => {
+            const { departmentName, departmentId } = answer;
+
+            connection.query(
+                "INSERT INTO Role SET?", {
+                name: answer.departmentName,
+                id: answer.departmentId,
+            }, function (err, results) {
+                if (err) throw err;
+                console.table(results);
+                console.log("The new role has been succesfully added!")
+            }
+            )
+            addRestart();
+        })
+};
