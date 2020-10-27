@@ -93,16 +93,23 @@ function addEmployee() {
                 type: "input",
                 message: "What is their role?",
                 name: "employeeRole"
+            },
+            {
+                type: "input",
+                message: "What is their manager's Id?",
+                name: "managerId"
             }
         ]).then(answer => {
-            const { firstName, lastName, employeeId, employeeRole } = answer;
+            const { firstName, lastName, employeeId, employeeRole, managerId } = answer;
 
             connection.query(
                 "INSERT INTO Employee SET?", {
                 first_name: answer.firstName,
                 last_name: answer.lastName,
                 id: answer.employeeId,
-                role_id: answer.employeeRole
+                role_id: answer.employeeRole,
+                manager_id: answer.managerId
+
             }, function (err, results) {
                 if (err) throw err;
                 console.table(results);
