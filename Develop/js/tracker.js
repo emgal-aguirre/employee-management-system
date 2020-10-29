@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-const inquierer = require('inquirer');
+const inquier = require('inquirer');
 const connection = require('./dbConfig');
 
 connection.connect(function (err) {
@@ -9,7 +9,7 @@ connection.connect(function (err) {
 });
 
 function startApp() {
-    inquierer
+    inquier
         .prompt([
             {
                 type: "list",
@@ -30,7 +30,7 @@ function startApp() {
 };
 
 function addOption() {
-    inquierer
+    inquier
         .prompt([
             {
                 type: "list",
@@ -40,39 +40,41 @@ function addOption() {
             }
         ]).then(answer => {
             if (answer.addedOption === "New Employee") {
-                newEmployee();
+                addEmployee();
             } else if (answer.initialChoice === "New Role") {
-                newRole();
+                addRole();
             } else if (answer.initialChoice === "New Department") {
                 newDepartment();
             }
         })
 };
 
+
 function viewOption() {
-    inquierer
+    inquier
         .prompt([
             {
                 type: "list",
-                message: "Would you like to view employee, role or depepartment directory?",
-                choices: ["Employee", "Role", "Department"],
+                message: " What data would you like to review?",
+                choices: ["Employee Data", "Role Data", "Department Data"],
                 name: "viewChoice"
             }
         ]).then(answer => {
-            if (answer.viewChoice === "Employee") {
+            if (answer.viewChoice === "Employee Data") {
                 viewEmployee();
-            } else if (answer.viewChoice === "Role") {
+            } else if (answer.viewChoice === "Role Data") {
                 viewRole();
-            } else if (answer.viewChoice === "Department") {
+            } else if (answer.viewChoice === "End session") {
                 viewDepartment();
-            }
-        })
+            };
+        });
 };
+
 
 // adding role, employee or department
 
 function addEmployee() {
-    inquierer
+    inquier
         .prompt([
             {
                 type: "input",
@@ -91,12 +93,12 @@ function addEmployee() {
             },
             {
                 type: "input",
-                message: "What is their role?",
+                message: "What is their role ID?",
                 name: "employeeRole"
             },
             {
                 type: "input",
-                message: "What is their manager's Id?",
+                message: "What is their manager's ID?",
                 name: "managerId"
             }
         ]).then(answer => {
@@ -121,7 +123,7 @@ function addEmployee() {
 };
 
 function addRole() {
-    inquierer
+    inquier
         .prompt([
             {
                 type: "input",
@@ -163,7 +165,7 @@ function addRole() {
 };
 
 function addDepartment() {
-    inquierer
+    inquier
         .prompt([
             {
                 type: "input",
@@ -194,38 +196,39 @@ function addDepartment() {
 
 //viewing employee, role and department function 
 
-function viewEmployee() {
-    connection.query(
-        "SELECT * FROM role",
-        function (err, results) {
-            if (err) throw err;
-            console.table(results);
-        });
+function viewEmployees() {
+    //function to view employees
+    connection.query("SELECT * FROM employee", function (err, results) {
+        if (err) throw err;
+        console.table(results);
+    });
     viewRestart();
 };
 
-function viewRole() {
+function viewRoles() {
+    //function to view roles
     connection.query(
         "SELECT * FROM role",
         function (err, results) {
             if (err) throw err;
             console.table(results);
-        });
+        }
+    )
     viewRestart();
+
 };
 
 function viewDepartment() {
-    connection.query(
-        "SELECT * FROM role",
-        function (err, results) {
-            if (err) throw err;
-            console.table(results);
-        });
+    //function for viewing the departments
+    connection.query("SELECT * FROM department", function (err, results) {
+        if (err) throw err;
+        console.table(results);
+    });
     viewRestart();
 };
 
 function addRestart() {
-    inquierer
+    inquier
         .prompt([
             {
                 type: "list",
@@ -243,7 +246,7 @@ function addRestart() {
 };
 
 function viewRestart() {
-    inquierer
+    inquier
         .prompt([
             {
                 type: "list",
