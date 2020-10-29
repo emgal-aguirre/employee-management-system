@@ -67,7 +67,7 @@ function viewOption() {
                 viewEmployee();
             } else if (answer.viewChoice === "Role Data") {
                 viewRole();
-            } else if (answer.viewChoice === "End session") {
+            } else if (answer.viewChoice === "Department Data") {
                 viewDepartment();
             };
         });
@@ -222,12 +222,16 @@ function viewRole() {
 };
 
 function viewDepartment() {
-    //function for viewing the departments
-    connection.query("SELECT * FROM department", function (err, results) {
-        if (err) throw err;
-        console.table(results);
-    });
+    //function to view department
+    connection.query(
+        "SELECT * FROM department",
+        function (err, results) {
+            if (err) throw err;
+            console.table(results);
+        }
+    )
     viewRestart();
+
 };
 
 function addRestart() {
