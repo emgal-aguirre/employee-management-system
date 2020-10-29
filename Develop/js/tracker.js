@@ -20,12 +20,15 @@ function startApp() {
         ]).then(answer => {
             if (answer.initialChoice === "Add emplyee, role, or department") {
                 addOption();
-            } else if (answer.initialChoice === "View emplyee, role, or department") {
-                viewOption();
-            } else if (answer.initialChoice === "End session") {
+            }
+            else if (answer.initialChoice === "End session") {
                 console.log("Session complete. Thanks for using the Emplyeement System!")
                 connection.end();
+            }
+            else if (answer.initialChoice === "View employees, roles or departments") {
+                viewOption();
             };
+
         });
 };
 
@@ -196,7 +199,7 @@ function addDepartment() {
 
 //viewing employee, role and department function 
 
-function viewEmployees() {
+function viewEmployee() {
     //function to view employees
     connection.query("SELECT * FROM employee", function (err, results) {
         if (err) throw err;
@@ -205,7 +208,7 @@ function viewEmployees() {
     viewRestart();
 };
 
-function viewRoles() {
+function viewRole() {
     //function to view roles
     connection.query(
         "SELECT * FROM role",
