@@ -5,10 +5,9 @@ The user is promted with questions to add new employee, role or department or th
  ## Table of Contents 
  * [Installation Instructions](#Installation-Instructions)  
  * [Demonstration](#Demonstration)
- * [Testing](#Testing) 
-  * [Questions](#Questions) 
+ * [Questions](#Questions) 
  
- ![ ](Assets/screenshot.png)
+
  
  ## Installation Instructions 
 # Instructions for Installation & Use
@@ -17,14 +16,15 @@ Open integrated terminal and add a NPM install inquierer and mysql.
 
 Once NPM install is completed type node tracker.js and you will be promted to select the desired action by using down or up arrows and you will be promted with an option to add employee, role or department or to view employee, role or department data. 
 
+
+
+# Demonstration
+https://youtu.be/iwSk7AxRzKQ
+
  ![ ](Assets/Screen%20Shot%201.png)
  ![ ](Assets/Screen%20Shot%202.png)
  ![ ](Assets/Screen%20Shot%203.png)
  ![ ](Assets/Screen%20Shot%204.png)
-
-
-# Demonstration
-https://youtu.be/BYRczhnrzp0
 
 
 
