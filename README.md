@@ -9,7 +9,6 @@ The user is promted with questions to add new employee, role or department or th
  
 
  
- ## Installation Instructions 
 # Instructions for Installation & Use
 Clone or fork this reposity to your local machine and open in VS code.
 Open integrated terminal and add a NPM install inquierer and mysql. 
