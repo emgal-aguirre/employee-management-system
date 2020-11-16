@@ -1,5 +1,5 @@
 # Employee Management Tracker
-This application allows you to create or view orginized data about your employees, roles and departments at your organization.
+This application allows you to create or view organized data about your employees, roles, and departments at your organization using MySQL.
 The user is promted with questions to add new employee, role or department or the option to view all existing data. 
 
  ## Table of Contents 
